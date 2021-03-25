@@ -22,8 +22,6 @@ class CreateTasksTable extends Migration
             $table->string('instructions');
             $table->bigInteger('level')->unsigned();
             $table->foreign('level')->references('id')->on('levels');
-            $table->bigInteger('id_lesson')->unsigned();
-            $table->foreign('id_lesson')->references('id')->on('lessons');
             $table->timestamps();
         });
 

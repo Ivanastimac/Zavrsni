@@ -15,6 +15,8 @@ class CreateLevelsTable extends Migration
     {
         Schema::create('levels', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('id_lesson')->unsigned();
+            $table->foreign('id_lesson')->references('id')->on('lessons');
             $table->boolean('complexity');
             $table->timestamps();
         });
