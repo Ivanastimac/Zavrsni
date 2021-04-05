@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\LevelLevel;
 
 class TasksController extends Controller
 {
@@ -12,13 +13,26 @@ class TasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id, $complexity)
     {
-        $all = Task::all();
+        session(['id_level' => $id]);
 
-        return view('tasks-index', [
-            'tasks' => $all
-        ]);
+        $all = Task::where('level', $id)->get();
+
+        if ($complexity == 0) {
+            return view('tasks/tasks-index', [
+                'tasks' => $all,
+                'complexity' => 0
+            ]);   
+        } else {
+            $levels = LevelLevel::where('level_1', $id)->pluck('level_0');
+            return view('tasks/tasks-index', [
+                'tasks' => $all,
+                'complexity' => 1,
+                'array' => $levels
+            ]);  
+        }
+
     }
 
     /**
@@ -28,7 +42,7 @@ class TasksController extends Controller
      */
     public function create()
     {
-        return view('tasks-create');
+        return view('tasks/tasks-create');
     }
 
     /**
@@ -44,10 +58,10 @@ class TasksController extends Controller
         $task->body = $request->body;
         $task->solution = $request->solution;
         $task->instructions = $request->instructions;
-        $task->level = $request->level;
+        $task->level = session('id_level');
         $task->save();
 
-        return redirect('/tasks/index');
+        return redirect('/tasks/index/'. session('id_level'));
     }
 
     /**
@@ -59,7 +73,8 @@ class TasksController extends Controller
     public function show($id)
     {
         $task = Task::find($id);
-        return view('tasks-show', [
+        
+        return view('tasks/tasks-show', [
             'task' => $task
         ]);
     }
@@ -73,7 +88,8 @@ class TasksController extends Controller
     public function edit($id)
     {
         $task = Task::find($id);
-        return view('task-edit', [
+
+        return view('tasks/task-edit', [
             'task' => $task
         ]);
     }
@@ -92,10 +108,10 @@ class TasksController extends Controller
         $task->body = $request->body;
         $task->solution = $request->solution;
         $task->instructions = $request->instructions;
-        $task->level = $request->level;
+        $task->level = session('id_level');
         $task->save();
 
-        return redirect('/tasks/index');
+        return redirect('/tasks/index/' . session('id_level'));
     }
 
     /**
@@ -108,6 +124,7 @@ class TasksController extends Controller
     {
         $task = Task::find($id);
         $task->delete();
-        return redirect('/tasks/index');
+
+        return redirect('/tasks/index/' . session('id_level'));
     }
 }

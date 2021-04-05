@@ -13,7 +13,7 @@ class CreateUserTasksTable extends Migration
      */
     public function up()
     {
-        Schema::create('user-tasks', function (Blueprint $table) {
+        Schema::create('user_tasks', function (Blueprint $table) {
             $table->bigInteger('id_user')->unsigned();
             $table->foreign('id_user')->references('id')->on('users');
             $table->bigInteger('id_task')->unsigned();
@@ -29,6 +29,6 @@ class CreateUserTasksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user-tasks');
+        Schema::dropIfExists('user_tasks');
     }
 }

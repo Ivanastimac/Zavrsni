@@ -24,10 +24,6 @@
         <label for="taskInstructions" class="form-label" >Objašnjenje zadatka</label></br>
         <textarea id="taskInstructions" name = "instructions" rows="3"> {{ $task->instructions }} </textarea>
     </div>
-    <div class="col-xs-2">
-        <label for="taskLevel" class="form-label" >Razina zadatka</label></br>
-        <input type="number" id="taskLevel" name = "level" value = "{{ $task->level }}">
-    </div>
     <div>
     <input type="submit" value = "Spremi promjene" class="btn btn-primary mb-3">
     </div>

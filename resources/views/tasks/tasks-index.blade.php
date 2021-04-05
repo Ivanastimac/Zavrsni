@@ -4,6 +4,14 @@
             {{ __('Zadaci') }}
         </h2>
     </x-slot>
+    @if ($complexity) 
+    {{ "Razina je složena!" }}
+        @foreach ($array as $level)    
+            {{ $level }}
+        @endforeach
+    @else
+        {{ "Razina je jednostavna!" }}
+    @endif
     <table class="table">
         <thead>
             <tr>

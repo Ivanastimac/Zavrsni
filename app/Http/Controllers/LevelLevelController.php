@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Lesson;
+use App\Models\LevelLevel;
+use App\Models\Level;
 
-class LessonsController extends Controller
+class LevelLevelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +15,7 @@ class LessonsController extends Controller
      */
     public function index()
     {
-        $all = Lesson::all();
-        
-        return view('lessons/lessons-index', [
-            'lessons' => $all
-        ]);
+        //
     }
 
     /**
@@ -28,7 +25,7 @@ class LessonsController extends Controller
      */
     public function create()
     {
-        return view('lessons/lessons-create');
+        //
     }
 
     /**
@@ -37,13 +34,28 @@ class LessonsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id, $id_lesson, $array)
     {
-        $lesson = new Lesson();
-        $lesson->title = $request->title;
-        $lesson->save();
+        $new_array = unserialize($array);
+        foreach ($new_array as $element) {
+            $levellevel = new LevelLevel();
+            $levellevel->level_1 = $id;
+            $levellevel->level_0 = $element;
+            $levellevel->save();
+        }
 
-        return redirect('/lessons/index');
+        return redirect('/levels/index/' . $id_lesson);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
     }
 
     /**
@@ -54,11 +66,7 @@ class LessonsController extends Controller
      */
     public function edit($id)
     {
-        $lesson = Lesson::find($id);
-
-        return view('lessons/lesson-edit', [
-            'lesson' => $lesson
-        ]);
+        //
     }
 
     /**
@@ -70,11 +78,7 @@ class LessonsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $lesson = Lesson::find($id);
-        $lesson->title = $request->title;
-        $lesson->save();
-
-        return redirect('/lessons/index');
+        //
     }
 
     /**
@@ -85,9 +89,6 @@ class LessonsController extends Controller
      */
     public function destroy($id)
     {
-        $lesson = Lesson::find($id);
-        $lesson->delete();
-        
-        return redirect('/lessons/index');
+        //
     }
 }
