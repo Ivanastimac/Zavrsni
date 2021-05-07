@@ -46,8 +46,14 @@ class LevelsController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validated = $request->validate([
+            'titleLevel' => 'required',
+            'complexity' => 'required',
+        ]);
+
         $level = new Level();
-        $level->title = $request->title;
+        $level->title = $request->titleLevel;
         $id = session('id_lesson');
         $level->id_lesson = $id;
         if ($request->complexity == 'simple') {
@@ -66,7 +72,7 @@ class LevelsController extends Controller
                 array_push($array, $level->id);
             }
         }
-
+        
         return redirect('/levellevel/store/' . $id . '/' . session('id_lesson') . '/'  . serialize($array));
     }
 
@@ -78,13 +84,7 @@ class LevelsController extends Controller
      */
     public function edit($id)
     {
-        $level = Level::find($id);
-        $all = Level::where('id_lesson', session('id_lesson'))->get();
-        
-        return view('levels/level-edit', [
-            'level' => $level,
-            'levels' => $all
-        ]);
+       
     }
 
     /**
@@ -96,27 +96,7 @@ class LevelsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $level = Level::find($id);
-        $level->title = $request->title;
-        if ($request->complexity == 'simple') {
-            $level->complexity = 0;
-        } else {
-            $level->complexity = 1;
-        }
-        $level->save();
-
-        $id = $level->id;
-
-        $all = Level::where('id_lesson', session('id_lesson'))->get();
-
-        $array = [];
-        foreach ($all as $level) {
-            if(null !== ($request->get('flexCheck' . $level->id))) {
-                array_push($array, $level->id);
-            }
-        }
-
-        return redirect('/levellevel/store/' . $id . '/' . session('id_lesson') . '/'  . serialize($array));
+       
     }
 
     /**
@@ -127,9 +107,6 @@ class LevelsController extends Controller
      */
     public function destroy($id)
     {
-        $level = Level::find($id);
-        $level->delete();
-        
-        return redirect('/levels/index/' . session('id_lesson'));
+       
     }
 }
