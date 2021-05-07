@@ -97,13 +97,13 @@ return [
     'password' => 'The password is incorrect.',
     'present' => 'The :attribute field must be present.',
     'regex' => 'The :attribute format is invalid.',
-    'required' => 'The :attribute field is required.',
+    'required' => 'Obavezno je popuniti :attribute.',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
     'required_with' => 'The :attribute field is required when :values is present.',
     'required_with_all' => 'The :attribute field is required when :values are present.',
     'required_without' => 'The :attribute field is required when :values is not present.',
-    'required_without_all' => 'The :attribute field is required when none of :values are present.',
+    'required_without_all' => 'Polje :attribute je obavezno popuniti ako nije popunjeno polje :values.',
     'prohibited_if' => 'The :attribute field is prohibited when :other is :value.',
     'prohibited_unless' => 'The :attribute field is prohibited unless :other is in :values.',
     'same' => 'The :attribute and :other must match.',
@@ -149,6 +149,21 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => array(
+        'titleTask' => 'naslov zadatka',
+        'taskAnswer1' => 'prvi odgovor',
+        'taskAnswer2' => 'drugi odgovor',
+        'taskAnswer3' => 'treći odgovor',
+        'taskAnswer4' => 'četvrti odgovor',
+        'solution' => 'točan odgovor',
+        'instructions' => 'objašnjenje zadatka',
+        'body' => 'tekst zadatka',
+        'taskImage' => 'slika zadatka',
+
+        'titleLesson' => 'naslov cjeline',
+
+        'titleLevel' => 'naslov razine',
+        'complexity' => 'je li razina složena ili ne'
+    ),
 
 ];

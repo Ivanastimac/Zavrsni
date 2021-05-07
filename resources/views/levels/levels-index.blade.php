@@ -10,8 +10,6 @@
                 <tr>
                 <th class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <a href = "/tasks/index/{{ $level->id }}/{{ $level->complexity }}"><button class="btn btn-success"> {{ $level->title }} </button></a>
-                    <a href = "/levels/edit/{{ $level->id }}"><button class="btn btn-success">Promjeni</button></a>
-                    <a href = "/levels/delete/{{ $level->id }}"><button class="btn btn-success">Obriši</button></a>
                 </th>
                 </tr>
             @endforeach    

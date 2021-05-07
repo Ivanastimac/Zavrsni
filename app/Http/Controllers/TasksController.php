@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\LevelLevel;
+use Illuminate\Support\MessageBag;
 
 class TasksController extends Controller
 {
@@ -53,15 +54,39 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'titleTask' => 'required',
+            'taskAnswer1' => 'required',
+            'taskAnswer2' => 'required',
+            'taskAnswer3' => 'required',
+            'taskAnswer4' => 'required',
+            'solution' => 'required',
+            'instructions' => 'required',
+            'body' => 'required_without_all:taskImage',
+            'taskImage' => 'required_without_all:body',
+        ]);
+        
         $task = new Task();
-        $task->title = $request->title;
-        $task->body = $request->body;
+        $task->title = $request->titleTask;
+        $task->bodyText = $request->body;
+        $task->firstAnswer = $request->taskAnswer1;
+        $task->secondAnswer = $request->taskAnswer2;
+        $task->thirdAnswer = $request->taskAnswer3;
+        $task->fourthAnswer = $request->taskAnswer4;
         $task->solution = $request->solution;
         $task->instructions = $request->instructions;
         $task->level = session('id_level');
         $task->save();
 
-        return redirect('/tasks/index/'. session('id_level'));
+        if ($request->file('taskImage')) {
+            $path = $request->file('taskImage')->storeAs('images/tasks', 'task' . $task->id);
+
+            $task->bodyImage = $path;
+            $task->save();   
+        }     
+
+        // promjena iz /tasks/index . seasson(id_level)
+        return redirect('/levels/index/'. '1');
     }
 
     /**
@@ -103,15 +128,41 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $validated = $request->validate([
+            'titleTask' => 'required',
+            'taskAnswer1' => 'required',
+            'taskAnswer2' => 'required',
+            'taskAnswer3' => 'required',
+            'taskAnswer4' => 'required',
+            'solution' => 'required',
+            'instructions' => 'required',
+            'body' => 'required_without_all:taskImage',
+            'taskImage' => 'required_without_all:body',
+        ]);
+
         $task = Task::find($id);
-        $task->title = $request->title;
-        $task->body = $request->body;
+
+        $task->title = $request->titleTask;
+        $task->bodyText = $request->body;
+        $task->firstAnswer = $request->taskAnswer1;
+        $task->secondAnswer = $request->taskAnswer2;
+        $task->thirdAnswer = $request->taskAnswer3;
+        $task->fourthAnswer = $request->taskAnswer4;
         $task->solution = $request->solution;
         $task->instructions = $request->instructions;
         $task->level = session('id_level');
         $task->save();
 
-        return redirect('/tasks/index/' . session('id_level'));
+        if ($request->file('taskImage')) {
+            $path = $request->file('taskImage')->storeAs('images/tasks', 'task' . $task->id);
+
+            $task->bodyImage = $path;
+            $task->save();    
+        }    
+    
+        // promjena iz /tasks/index . seasson(id_level)
+        return redirect('/levels/index/'. '1');
     }
 
     /**

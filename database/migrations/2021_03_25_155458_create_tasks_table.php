@@ -18,6 +18,12 @@ class CreateTasksTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->longText('body');
+            $table->string('bodyText')->nullable();
+            $table->string('bodyImage')->nullable();
+            $table->string('firstAnswer');
+            $table->string('secondAnswer');
+            $table->string('thirdAnswer');
+            $table->string('fourthAnswer');
             $table->string('solution');
             $table->longText('instructions');
             $table->bigInteger('level')->unsigned();

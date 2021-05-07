@@ -17,9 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', 'App\Http\Controllers\HomeController@index')->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/game', 'App\Http\Controllers\GameController@index')->name('game');
-    
 Route::middleware(['auth:sanctum', 'verified'])->get('/game/lesson/{id}', 'App\Http\Controllers\GameController@getLesson');
 Route::middleware(['auth:sanctum', 'verified'])->get('/game/level/{id}', 'App\Http\Controllers\GameController@getLevel');
 Route::middleware(['auth:sanctum', 'verified'])->get('/game/task/{id}', 'App\Http\Controllers\GameController@getTask');
