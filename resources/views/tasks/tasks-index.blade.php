@@ -29,7 +29,7 @@
                 <th class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <a href = "/tasks/edit/{{ $task->id }}"><button class="btn btn-success">Promjeni</button></a>
                     <a href = "/tasks/show/{{ $task->id }}"><button class="btn btn-success">Detalji</button></a>
-                    <a href = "/tasks/delete/{{ $task->id }}"><button class="btn btn-success">Obriši</button></a>
+                    <a href = "/tasks/delete/{{ $task->id }}" onclick = "return confirm('Jeste li sigurni da želite izbrisati ovaj zadatak?')"><button class="btn btn-success">Obriši</button></a>
                 </th>
                 </tr>
             @endforeach    

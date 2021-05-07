@@ -39,6 +39,10 @@ class LessonsController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'titleLesson' => 'required'
+        ]);
+
         $lesson = new Lesson();
         $lesson->title = $request->title;
         $lesson->save();
@@ -54,11 +58,7 @@ class LessonsController extends Controller
      */
     public function edit($id)
     {
-        $lesson = Lesson::find($id);
-
-        return view('lessons/lesson-edit', [
-            'lesson' => $lesson
-        ]);
+       
     }
 
     /**
@@ -70,11 +70,7 @@ class LessonsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $lesson = Lesson::find($id);
-        $lesson->title = $request->title;
-        $lesson->save();
-
-        return redirect('/lessons/index');
+        
     }
 
     /**
@@ -85,9 +81,6 @@ class LessonsController extends Controller
      */
     public function destroy($id)
     {
-        $lesson = Lesson::find($id);
-        $lesson->delete();
-        
-        return redirect('/lessons/index');
+    
     }
 }
