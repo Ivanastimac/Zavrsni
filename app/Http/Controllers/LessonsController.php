@@ -44,7 +44,7 @@ class LessonsController extends Controller
         ]);
 
         $lesson = new Lesson();
-        $lesson->title = $request->title;
+        $lesson->title = $request->titleLesson;
         $lesson->save();
 
         return redirect('/lessons/index');
