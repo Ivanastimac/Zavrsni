@@ -98,7 +98,7 @@ return [
     'present' => 'The :attribute field must be present.',
     'regex' => 'The :attribute format is invalid.',
     'required' => 'Obavezno je popuniti :attribute.',
-    'required_if' => 'The :attribute field is required when :other is :value.',
+    'required_if' => 'Obavezno je popuniti o kojim razinama ovisi ova razina ako je ona složena. Mora ovisiti o najmanje dvije razine.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
     'required_with' => 'The :attribute field is required when :values is present.',
     'required_with_all' => 'The :attribute field is required when :values are present.',
@@ -163,7 +163,8 @@ return [
         'titleLesson' => 'naslov cjeline',
 
         'titleLevel' => 'naslov razine',
-        'complexity' => 'je li razina složena ili ne'
+        'complexity' => 'je li razina složena ili ne',
+        'flexBox' => 'o kojim razinama ovisi ova razina'
     ),
 
 ];

@@ -50,6 +50,7 @@ class LevelsController extends Controller
         $validated = $request->validate([
             'titleLevel' => 'required',
             'complexity' => 'required',
+            'flexBox' => 'required_if:complexity,complex|min:2',
         ]);
 
         $level = new Level();
