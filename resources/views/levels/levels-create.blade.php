@@ -23,22 +23,23 @@
         <input type="text" id="levelTitle" name = "titleLevel">
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="radio" name="complexity" id="complexitySimple" value="simple">
+        <input class="form-check-input" type="radio" name="complexity" id="complexitySimple" value="simple" onchange = 'divShow()'>
             <label class="form-check-label" for="complexitySimple">
                 Jednostavna razina
             </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="radio" name="complexity" id="complexityComplex" value="complex">
+        <input class="form-check-input" type="radio" name="complexity" id="complexityComplex" value="complex" onchange = 'divShow()'>
             <label class="form-check-label" for="complexityComplex">
                 Složena razina
             </label>
     </div>
-    <div>
+    <div id = "levelsDiv" style="display:none">
         Razine o kojima ovisi: </br>
         @foreach ($levels as $level)
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="flexCheck{{ $level->id }}" id="flexCheck{{ $level->id }}">
+        <!-- ime checkboxa je polje zbog validacije -->
+            <input class="form-check-input" type="checkbox" name="flexCheck[]" id="flexCheck{{ $level->id }}">
             <label class="form-check-label" for="flexCheck{{ $level->id }}">
                 {{ $level->title }}
             </label>
@@ -51,4 +52,15 @@
     </div>
     </form>
 </x-app-layout>
+
+<script>
+    function divShow() {
+        if (document.getElementById("complexitySimple").checked) {
+            document.getElementById("levelsDiv").style.display = 'none';
+        }
+        if (document.getElementById("complexityComplex").checked) {
+            document.getElementById("levelsDiv").style.display = 'block';
+        }
+    }
+</script>
 
