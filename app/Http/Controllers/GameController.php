@@ -71,12 +71,14 @@ class GameController extends Controller
                 foreach ($condition as $i){
                     if ($count_answers[$i] < 2){
                         $next_level = $i;
-                    } 
+                        break;
+                    }
                 }
                 if ($count_answers[$level->id] < 2){
                     $next_level = $level->id;
-                } else {
-                    dd ("gotova lekcija");
+                    break;
+                } else if ($count_answers[$level->id] >= 2 && $level->id == Level::max('id')){
+                    dd ("gotova igrica");
                 }
             }
         }

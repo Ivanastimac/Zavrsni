@@ -11,8 +11,7 @@
                 {{ $task->bodyText }}
             @endif
             @if($task->bodyImage != NULL)
-                <img src="storage/app/"<?php echo $task->bodyImage; ?> >
-                storage/app/<?php echo $task->bodyImage; ?>
+                <img src = "{{ asset('images-tasks/task' . $task->id) }}" alt="{{ asset('images-tasks/task' . $task->id) }}">
             @endif
             
             <br />
