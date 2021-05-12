@@ -46,15 +46,11 @@ class LevelsController extends Controller
      */
     public function store(Request $request)
     {
-
-        dd($request->flexCheck);
         $validated = $request->validate([
             'titleLevel' => 'required',
             'complexity' => 'required',
             'flexCheck' => 'required_if:complexity,complex|min:2',
         ]);
-
-        //required_if:complexity,complex
 
         $level = new Level();
         $level->title = $request->titleLevel;
