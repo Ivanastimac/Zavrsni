@@ -583,6 +583,7 @@ class ComposerStaticInitcac61478e83baa38cd7a92c5af65d508
         'App\\Http\\Controllers\\LessonsController' => __DIR__ . '/../..' . '/app/Http/Controllers/LessonsController.php',
         'App\\Http\\Controllers\\LevelLevelController' => __DIR__ . '/../..' . '/app/Http/Controllers/LevelLevelController.php',
         'App\\Http\\Controllers\\LevelsController' => __DIR__ . '/../..' . '/app/Http/Controllers/LevelsController.php',
+        'App\\Http\\Controllers\\StudyController' => __DIR__ . '/../..' . '/app/Http/Controllers/StudyController.php',
         'App\\Http\\Controllers\\TasksController' => __DIR__ . '/../..' . '/app/Http/Controllers/TasksController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Admin' => __DIR__ . '/../..' . '/app/Http/Middleware/Admin.php',
