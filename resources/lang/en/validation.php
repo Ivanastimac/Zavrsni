@@ -87,7 +87,7 @@ return [
     'min' => [
         'numeric' => 'The :attribute must be at least :min.',
         'file' => 'The :attribute must be at least :min kilobytes.',
-        'string' => 'The :attribute must be at least :min characters.',
+        'string' => 'Složena razina mora ovisiti o najmanje dvije razine.',
         'array' => 'The :attribute must have at least :min items.',
     ],
     'multiple_of' => 'The :attribute must be a multiple of :value.',
@@ -98,7 +98,7 @@ return [
     'present' => 'The :attribute field must be present.',
     'regex' => 'The :attribute format is invalid.',
     'required' => 'Obavezno je popuniti :attribute.',
-    'required_if' => 'Obavezno je popuniti o kojim razinama ovisi ova razina ako je ona složena. Mora ovisiti o najmanje dvije razine.',
+    'required_if' => 'Obavezno je popuniti o kojim razinama ovisi ova razina ako je ona složena.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
     'required_with' => 'The :attribute field is required when :values is present.',
     'required_with_all' => 'The :attribute field is required when :values are present.',
