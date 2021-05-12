@@ -12,7 +12,12 @@
                     <a href = "/game/lesson/{{ $lesson->id }}"><button class="btn btn-success"> {{ $lesson->title }} </button></a>
                 </th>
                 </tr>
-            @endforeach    
+            @endforeach
+            @if (session('alert'))
+                <div class="alert alert-success">
+                    {{ session('alert') }}
+                </div>
+            @endif   
         </tbody>
     </table>
 </x-app-layout>

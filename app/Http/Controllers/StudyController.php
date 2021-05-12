@@ -55,10 +55,10 @@ class StudyController extends Controller
         $index = 0;
         $last_level = 0;
         foreach($count_answers as $i){
-            $index++;
             if ($i >= 2){
                 $last_level = $index;
             }
+            $index++;
         }
 
         /*
