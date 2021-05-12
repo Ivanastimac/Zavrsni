@@ -11,6 +11,7 @@ use App\Models\LevelLevel;
 use App\Models\Task;
 use App\Models\User;
 use App\Models\UserTasks;
+use App\Models\UserAnsweredTasks;
 
 class GameController extends Controller
 {   
@@ -156,18 +157,30 @@ class GameController extends Controller
 
         $id_level = $task->level;
 
-        //ako je zadatak tocno rijesen spremiti u bazu
+        //ako je zadatak tocno rijesen spremiti u user_tasks i u user_answered_tasks
         if ($request->answer == $task->solution){
-            $exists = UserTasks::where([
+            $exists1 = UserTasks::where([
                 ['id_user', $id_user],
                 ['id_task', $id_task]
             ])->get();
             
-            if($exists == '[]'){
+            if($exists1 == '[]'){
                 $user_tasks = new UserTasks();
                 $user_tasks->id_user = $id_user;
                 $user_tasks->id_task = $id_task;
                 $user_tasks->save();
+            }
+
+            $exists2 = UserAnsweredTasks::where([
+                ['id_user', $id_user],
+                ['id_answered_task', $id_task]
+            ])->get();
+            
+            if($exists2 == '[]'){
+                $user_answered_tasks = new UserAnsweredTasks();
+                $user_answered_tasks->id_user = $id_user;
+                $user_answered_tasks->id_answered_task = $id_task;
+                $user_answered_tasks->save();
             }
 
             $lesson = Level::where('id', $id_level)->pluck('id_lesson')->toArray();
