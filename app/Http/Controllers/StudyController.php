@@ -103,13 +103,13 @@ class StudyController extends Controller
         $all = Task::where('level', $id)->get();
         
         $answered = UserAnsweredTasks::where('id_user', $id_user)->pluck('id_answered_task')->toArray();
-        
+
         if ($answered != null){
-            $available = Task::where('level', $id)->whereNotIn('id', $answered)->get();
+            $finished = Task::where('level', $id)->whereIn('id', $answered)->get();
             
-            if ($available != null){
+            if ($finished != null){
                 return view('study/study-level', [
-                    'tasks' => $available,
+                    'finished' => $finished,
                     'all' => $all
                 ]);
             }
