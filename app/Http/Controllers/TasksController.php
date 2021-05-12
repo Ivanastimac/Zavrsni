@@ -79,6 +79,7 @@ class TasksController extends Controller
         $task->save();
 
         if ($request->file('taskImage')) {
+            // dobivanje slike: <img src = "{{ asset('images-tasks/task2') }}">
             $path = $request->file('taskImage')->storeAs('images/tasks', 'task' . $task->id);
 
             $task->bodyImage = $path;
