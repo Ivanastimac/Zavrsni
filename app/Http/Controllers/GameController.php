@@ -79,7 +79,8 @@ class GameController extends Controller
                     $next_level = $level->id;
                     break;
                 } else if ($count_answers[$level->id] >= 2 && $level->id == Level::max('id')){
-                    dd ("gotova igrica");
+                    $lesson = Lesson::where('id', $id)->get();
+                    return redirect('/game')->with('alert', 'Cijelina' . $lesson->lessonTitle . ' je gotova!');
                 }
             }
         }

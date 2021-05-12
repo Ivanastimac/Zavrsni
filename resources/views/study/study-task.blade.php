@@ -16,7 +16,7 @@
             
             <br />
 
-            <form method="POST" action="{{ url('/game/solution/'. $task->id) }}">
+            <form method="POST" action="{{ url('/study/solution/'. $task->id) }}">
                 @csrf
                 <input type="radio" id="1" name="answer" value="1">
                 <label for="1">{{ $task->firstAnswer }}</label><br />
