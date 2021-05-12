@@ -13,7 +13,7 @@ use App\Models\User;
 use App\Models\UserTasks;
 
 class GameController extends Controller
-{
+{   
     /**
      * Display all lessons.
      *
@@ -35,70 +35,62 @@ class GameController extends Controller
      */
     public function getLesson($id)
     {
+        // polje broja točno riješenih zadataka iz određenog levela, index polja predstavlja level,
+        // a vrijednost na indexu broj točno riješenih zadataka
+        // ograniceno na 50 levela
+        $count_answers = array_fill(0, 50, 0);
+       
         session(['id' => $id]);
         $id_user = Auth::id();
 
         //svi leveli unutar lekcije
-        $all = Level::where('id_lesson', $id)->get();
-        $return = array();
-        $final = array();
-        $check = 0;
+        $all_levels = Level::where('id_lesson', $id)->get();
 
-        foreach($all as $all_levels){
-            //svi leveli koji imaju preduvijet
-            $conditioned_levels = LevelLevel::all();
-            
-            //svi leveli unutar lekcije koji imaju preduvijet
-            $levels = array();
-            foreach($conditioned_levels as $c){
-                if ($all_levels->id == $c->level_1) array_push($levels, $all_levels);
-            }
-                
-            $levels = array_unique($levels);
-            
-            //polje svih levela unutar lekcije koji su preduvijet složenim levelima
-            $condition = array();
-            foreach($conditioned_levels as $l1){
-                foreach($levels as $l2){
-                    if ($l1->level_1 == $l2->id) array_push($condition, $l1->level_0);
-                }
-            }
-            
-            //polje svih riješenih zadataka
-            $finished_tasks = UserTasks::where('id_user', $id_user)->pluck('id_task')->toArray(); 
-            
-            //polje svih riješenih levela
-            $finished_levels = Task::whereIn('id', $finished_tasks)->pluck('level')->toArray();
-            
-            //polje ne riješenih preduvijeta
-            foreach($finished_levels as $f){
-                unset($condition[array_search($f, $condition)]);
-            }
-            
-            //ako su svi preduvijeti riješeni
-            if(empty($condition)){   
-                $final = array_merge($return, $levels);
-                $check++;
-            //ako nisu
+        //polje svih riješenih zadataka
+        $finished_tasks = UserTasks::where('id_user', $id_user)->pluck('id_task')->toArray();
+
+        //provjera koliko je zadataka tocno riješeno iz svakog levela
+        foreach($finished_tasks as $i){
+            $task = Task::where('id', $i)->pluck('level')->toArray();
+            $count_answers[$task[0]]++;
+        }
+
+        $next_level = 0;
+        $condition = array();
+
+        //petlja prolazi po svakom levelu, ako je jednostavan i nema 2 zadatka tocno rijesena vraca taj level,
+        //ako je slozen provjerava jesu li rijeseni preduvijeti
+        foreach($all_levels as $level){
+            if ($level->complexity == 0){
+                if ($count_answers[$level->id] < 2){
+                    $next_level = $level->id;
+                    break;
+                } 
             } else {
-                $check = 0;
-                $final = $return;                
-                $new = Level::where('id_lesson', $id)->whereIn('id', $condition)->pluck('id')->toArray();                
-                foreach($new as $n){
-                    array_push($return, $n);
+                $condition = LevelLevel::where('level_1', $level->id)->pluck('level_0')->toArray();
+                foreach ($condition as $i){
+                    if ($count_answers[$i] < 2){
+                        $next_level = $i;
+                        break;
+                    }
+                }
+                if ($count_answers[$level->id] < 2){
+                    $next_level = $level->id;
+                    break;
+                } else if ($count_answers[$level->id] >= 2 && $level->id == Level::max('id')){
+                    dd ("gotova igrica");
                 }
             }
         }
-        
-        if ($check){
-            $final = array_unique($final);
-            $return_levels = Level::where('id_lesson', $id)->whereIn('id', $final[0])->get();
-        } else {
-            $return_levels = Level::where('id_lesson', $id)->whereIn('id', $return)->get();
-        }
-        
-        return view('game/game-lesson', [
-            'levels' => $return_levels
+
+        //vraća sve zadatke iz sljedećeg levela koji nisu već riješeni
+        $return_tasks = Task::where('level', $next_level)->whereNotIN('id', $finished_tasks)->get();
+
+        //vraća random zadatak od mogućih
+        $rand_task = $return_tasks[rand(0, count($return_tasks) - 1)];
+  
+        return view('game/game-task', [
+            'task' => $rand_task
         ]);
     }
 
@@ -162,7 +154,10 @@ class GameController extends Controller
         $id_task = $id;
         $task = Task::find($id_task);
 
-        if ($request->odg == $task->solution){
+        $id_level = $task->level;
+
+        //ako je zadatak tocno rijesen spremiti u bazu
+        if ($request->answer == $task->solution){
             $exists = UserTasks::where([
                 ['id_user', $id_user],
                 ['id_task', $id_task]
@@ -174,9 +169,50 @@ class GameController extends Controller
                 $user_tasks->id_task = $id_task;
                 $user_tasks->save();
             }
+
+            $lesson = Level::where('id', $id_level)->pluck('id_lesson')->toArray();
             /*RETURN SLJEDEĆI ZADATAK*/
-            return redirect('/game/level/' . $task->level);
+            return redirect('/game/lesson/' . $lesson[0]);
+
+        //ako zadatak nije tocno rijesen obrisati ostale zadatke iz baze
         } else {
+            $level = Level::where('id', $id_level)->get();
+            //svi zadaci u istom levelu u kojem se trenutno nalazimo
+            $all_tasks = Task::where('level', $id_level)->pluck('id')->toArray();
+
+            //pobrisi tocno rijesene zadatke iz ovog levela
+            $user_tasks = UserTasks::all();
+            
+            foreach($user_tasks as $i){
+               foreach($all_tasks as $j){
+                    if ($i->id_task == $j){
+                        $delete = UserTasks::where('id_task', $i->id_task)->delete();
+                    }
+               }
+            }
+            
+            //ako se radi o kompleksnom levelu
+            if ($level[0]->complexity != 0){
+                //pobrisi tocno rijesene zadatke i iz svih condition levela
+                $condition = LevelLevel::where('level_1', $id_level)->pluck('level_0')->toArray();
+
+                foreach($condition as $i){
+                    //svi zadaci unutar condition levela
+                    $all_tasks = Task::where('level', $i)->pluck('id')->toArray();
+
+                    //pobrisi tocno rijesene zadatke iz ovog levela
+                    $user_tasks = UserTasks::all();
+                    
+                    foreach($user_tasks as $j){
+                        foreach($all_tasks as $z){
+                            if ($j->id_task == $z){
+                                $delete = UserTasks::where('id_task', $j->id_task)->delete();
+                            }
+                        }
+                    }
+                }   
+            }
+            //prikazi objasnjenje zadatka
             return view('game/game-instructions', [
                 'task' => $task
             ]);

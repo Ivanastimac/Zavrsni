@@ -8,7 +8,7 @@
         <tbody>
             {!! html_entity_decode($task->instructions) !!}
             <br />
-            <a href = "/game/level/{{ $task->level }}"><button class="btn btn-success"> Povratak na zadatke </button></a>
+            <a href = "/game"><button class="btn btn-success"> Povratak na zadatke </button></a>
         </tbody>
     </table>
 </x-app-layout>
