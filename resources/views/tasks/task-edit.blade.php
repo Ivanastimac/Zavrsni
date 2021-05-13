@@ -28,8 +28,11 @@
         <textarea id="taskBody" name = "body" rows="3"> {{ $task->bodyText }} </textarea>
     </div>
     <div>
-    <!-- ovdje fali prikaz slike -->
+    <!-- prikaz slike -->
         Slika zadatka </br>
+        @if($task->bodyImage != NULL)
+                <img src = "{{ asset('images-tasks/task' . $task->id) }}" alt="{{ asset('images-tasks/task' . $task->id) }}">
+        @endif
         <input type="file" name="taskImage" class="custom-file-input" id="chooseFile">
     </div>
     <div class="col-xs-2">
@@ -79,7 +82,9 @@
     </div>
     <div>
         Slika objašnjenja </br>
-            <!-- ovdje fali prikaz slike -->
+        @if($task->bodyImageInstructions != NULL)
+            <img src = "{{ asset('images-instructions/instructions' . $task->id) }}" alt="{{ asset('images-instructions/instructions' . $task->id) }}">
+        @endif
         <input type="file" name="taskImageInstructions" class="custom-file-input" id="chooseFileInstructions">
     </div>
     <div>
