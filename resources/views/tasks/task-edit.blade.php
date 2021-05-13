@@ -78,6 +78,11 @@
         <textarea id="taskInstructions" name = "instructions" rows="3"> {{ $task->instructions }} </textarea>
     </div>
     <div>
+        Slika objašnjenja </br>
+            <!-- ovdje fali prikaz slike -->
+        <input type="file" name="taskImageInstructions" class="custom-file-input" id="chooseFileInstructions">
+    </div>
+    <div>
     <input type="submit" value = "Spremi promjene" class="btn btn-primary mb-3">
     </div>
     </div>

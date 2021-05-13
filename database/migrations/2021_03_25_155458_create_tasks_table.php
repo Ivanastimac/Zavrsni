@@ -24,7 +24,8 @@ class CreateTasksTable extends Migration
             $table->string('thirdAnswer');
             $table->string('fourthAnswer');
             $table->string('solution');
-            $table->longText('instructions');
+            $table->longText('instructions')->nullable();
+            $table->string('bodyImageInstructions')->nullable();
             $table->bigInteger('level')->unsigned();
             $table->foreign('level')->references('id')->on('levels');
             $table->timestamps();

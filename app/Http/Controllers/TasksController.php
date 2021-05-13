@@ -55,15 +55,16 @@ class TasksController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'body' => 'required_without_all:taskImage',
+            'taskImage' => 'required_without_all:body',
             'titleTask' => 'required',
             'taskAnswer1' => 'required',
             'taskAnswer2' => 'required',
             'taskAnswer3' => 'required',
             'taskAnswer4' => 'required',
             'solution' => 'required',
-            'instructions' => 'required',
-            'body' => 'required_without_all:taskImage',
-            'taskImage' => 'required_without_all:body',
+            'instructions' => 'required_without_all:taskImageInstructions',
+            'taskImageInstructions' => 'required_without_all:instructions',
         ]);
         
         $task = new Task();
@@ -85,6 +86,13 @@ class TasksController extends Controller
             $task->bodyImage = $path;
             $task->save();   
         }     
+
+        if ($request->file('taskImageInstructions')) {
+            $path = $request->file('taskImageInstructions')->storeAs('images/instructions', 'instructions' . $task->id);
+
+            $task->bodyImageInstructions = $path;
+            $task->save();    
+        } 
 
         // promjena iz /tasks/index . seasson(id_level)
         return redirect('/levels/index/'. '1');
@@ -131,15 +139,16 @@ class TasksController extends Controller
     {
 
         $validated = $request->validate([
+            'body' => 'required_without_all:taskImage',
+            'taskImage' => 'required_without_all:body',
             'titleTask' => 'required',
             'taskAnswer1' => 'required',
             'taskAnswer2' => 'required',
             'taskAnswer3' => 'required',
             'taskAnswer4' => 'required',
             'solution' => 'required',
-            'instructions' => 'required',
-            'body' => 'required_without_all:taskImage',
-            'taskImage' => 'required_without_all:body',
+            'instructions' => 'required_without_all:taskImageInstructions',
+            'taskImageInstructions' => 'required_without_all:instructions',
         ]);
 
         $task = Task::find($id);
@@ -159,6 +168,13 @@ class TasksController extends Controller
             $path = $request->file('taskImage')->storeAs('images/tasks', 'task' . $task->id);
 
             $task->bodyImage = $path;
+            $task->save();    
+        }   
+
+        if ($request->file('taskImageInstructions')) {
+            $path = $request->file('taskImageInstructions')->storeAs('images/instructions', 'instructions' . $task->id);
+
+            $task->bodyImageInstructions = $path;
             $task->save();    
         }    
     
