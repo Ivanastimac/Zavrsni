@@ -6,7 +6,12 @@
     </x-slot>
     <table class="table">
         <tbody>
-            {!! html_entity_decode($task->instructions) !!}
+            @if($task->instructions != NULL)
+                {{ $task->instructions }}
+            @endif
+            @if($task->bodyImageInstructions != NULL)
+                <img src = "{{ asset('images-instructions/instructions' . $task->id) }}" alt="{{ asset('images-instructions/instructions' . $task->id) }}">
+            @endif
             <br />
             <a href = "/game"><button class="btn btn-success"> Povratak na zadatke </button></a>
         </tbody>
