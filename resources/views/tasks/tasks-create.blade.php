@@ -76,6 +76,10 @@
         <textarea id="taskInstructions" name = "instructions" rows="3"></textarea>
     </div>
     <div>
+        Slika objašnjenja </br>
+        <input type="file" name="taskImageInstructions" class="custom-file-input" id="chooseFileInstructions">
+    </div>
+    <div>
     <input type="submit" value = "Spremi zadatak" class="btn btn-primary mb-3">
     </div>
     </div>

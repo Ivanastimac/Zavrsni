@@ -159,6 +159,7 @@ return [
         'instructions' => 'objašnjenje zadatka',
         'body' => 'tekst zadatka',
         'taskImage' => 'slika zadatka',
+        'taskImageInstructions' => 'slika objašnjenja',
 
         'titleLesson' => 'naslov cjeline',
 
