@@ -85,7 +85,7 @@ class StudyController extends Controller
                 'levels' => $all_levels
             ]);
         } else {
-            return redirect('/study')->with('alert', 'Zadaci će biti dostupni nakon što uspješno riješite cijelinu u igrici!');
+            return redirect('/study')->with('alert', 'Zadaci će biti dostupni nakon što uspješno riješite cjelinu u igrici!');
         }
 
     }

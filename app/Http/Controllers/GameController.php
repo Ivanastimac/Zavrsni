@@ -80,7 +80,7 @@ class GameController extends Controller
                     break;
                 } else if ($count_answers[$level->id] >= 2 && $level->id == Level::max('id')){
                     $lesson = Lesson::where('id', $id)->value('title');
-                    return redirect('game')->with('alert', 'Cijelina "' . $lesson . '" je uspješno riješena! Za dodatnu vježbu pristupite kartici Vježbanje.');
+                    return redirect('game')->with('alert', 'Cjelina "' . $lesson . '" je uspješno riješena! Za dodatnu vježbu pristupite kartici Vježbanje.');
                 }
             }
         }
