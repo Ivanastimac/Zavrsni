@@ -80,7 +80,7 @@ class StudyController extends Controller
         }
         */
 
-        if($last_level == Level::max('id')){
+        if($last_level == Level::where('id_lesson', $id)->max('id')){
             return view('study/study-lesson', [
                 'levels' => $all_levels
             ]);
