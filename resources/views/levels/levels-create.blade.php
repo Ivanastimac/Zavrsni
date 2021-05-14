@@ -39,7 +39,7 @@
         @foreach ($levels as $level)
         <div class="form-check">
         <!-- ime checkboxa je polje zbog validacije -->
-            <input class="form-check-input" type="checkbox" name="flexCheck[]" id="flexCheck{{ $level->id }}">
+            <input class="form-check-input" type="checkbox" name="flexCheck[{{ $level->id }}]" id="flexCheck{{ $level->id }}">
             <label class="form-check-label" for="flexCheck{{ $level->id }}">
                 {{ $level->title }}
             </label>

@@ -67,9 +67,9 @@ class LevelsController extends Controller
         $all = Level::where('id_lesson', session('id_lesson'))->get();
 
         $array = [];
-        foreach ($all as $level) {
-            if(null !== ($request->get('flexCheck' . $level->id))) {
-                array_push($array, $level->id);
+        if ($request->complexity == 'complex') {
+            foreach ($request->flexCheck as $idLevel => $value) {
+                array_push($array, $idLevel);
             }
         }
         
