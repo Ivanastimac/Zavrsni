@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Lesson extends Model
 {
     use HasFactory;
+
+    // zbog livewirea
+    protected $fillable = ['title'];
+
 }
