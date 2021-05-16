@@ -39,9 +39,15 @@ class LessonsController extends Controller
      */
     public function store(Request $request)
     {
+
+        // mislim da ovo više ništa ne treba jer spremamo preko livewirea
+        
+        /*
         $validated = $request->validate([
             'titleLesson' => 'required'
-        ]);
+        ]);*/
+
+        dd($request);
 
         $lesson = new Lesson();
         $lesson->title = $request->titleLesson;

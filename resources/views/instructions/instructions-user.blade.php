@@ -9,11 +9,12 @@
         Upute za igranje igrice: </br>
     </span>
 
-    Otvaranjem cjeline pokreće se igrica za taj dio gradiva</br>
-    Redom se prikazuju zadatci iz pojedinih razina, a potrebno je zaredom riješiti po dva zadatka iz određene razine kako bi se ta razina uspješno prošla</br>
-        Ako unutar jednostavne razine krivo riješite zadatak dobivate zadatak iz iste razine sve dok ne riješite dva zadatka točno</br>
-	    Ako unutar složene razine krivo riješite zadatak vraća vas na jednostavne razine koje sadrže zadatke od kojih se sastoji složena razina unutar koje ste krivo riješili zadatak</br>
-	        Potrebno je ponovno riješiti po dva zadatka unutar svake jednostavne razine?</br>
+    •	Otvaranjem cjeline pokreće se igrica za taj dio gradiva</br>
+    •	Redom se prikazuju zadatci iz pojedinih razina, a potrebno je zaredom riješiti po dva zadatka iz određene razine kako bi se ta razina uspješno prošla</br>
+    &emsp; o	Ako unutar jednostavne razine krivo riješite zadatak dobivate zadatak iz iste razine sve dok ne riješite dva zadatka točno</br>
+    &emsp; o	Ako unutar složene razine krivo riješite zadatak vraća vas na jednostavne razine koje sadrže zadatke od kojih se sastoji složena razina unutar koje ste krivo riješili zadatak</br>
+    &emsp; o	Potrebno je ponovno riješiti po dva zadatka unutar svake jednostavne razine?</br>
+
 
 
 </x-app-layout>
