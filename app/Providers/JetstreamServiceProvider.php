@@ -28,19 +28,6 @@ class JetstreamServiceProvider extends ServiceProvider
     {
         $this->configurePermissions();
 
-        Fortify::loginView(function () {
-            return view('auth.login');
-        });
-
-        Fortify::authenticateUsing(function (Request $request) {
-            $user = User::where('email', $request->email)->first();
-    
-            if ($user &&
-                Hash::check($request->password, $user->password)) {
-                return $user;
-            }
-        });
-
         Jetstream::deleteUsersUsing(DeleteUser::class);
     }
 

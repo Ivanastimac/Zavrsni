@@ -18,11 +18,6 @@ class User extends Authenticatable implements MustVerifyEmail
     use Notifiable;
     use TwoFactorAuthenticatable;
 
-    public function sendEmailVerificationNotification()
-    {
-        $this->notify(new MyVerificationNotification());
-    }
-
     /**
      * The attributes that are mass assignable.
      *
