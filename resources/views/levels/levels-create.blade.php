@@ -34,6 +34,7 @@
                 Složena razina
             </label>
     </div>
+    <!-- ne vidi se dok se ne stisne radio button da je razina složena -->
     <div id = "levelsDiv" style="display:none">
         Razine o kojima ovisi: </br>
         @foreach ($levels as $level)

@@ -16,11 +16,7 @@ use App\Models\UserAnsweredTasks;
 
 class StudyController extends Controller
 {
-    /**
-     * Display all lessons.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         $allLessons = Lesson::all();
@@ -30,11 +26,7 @@ class StudyController extends Controller
         ]);
     }
 
-    /**
-     * Display all levels in the lesson.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // kad student stisne na cjelinu provjerava se ako je riješio cijelu cjelinu
     public function getLesson($id)
     {
         session(['id' => $id]);
@@ -61,25 +53,6 @@ class StudyController extends Controller
             $index++;
         }
 
-        /*
-        //polje svih levela do onoga na kojem je korisnik stao
-        $levels = array();
-
-        if (!empty($answered_tasks)){
-            foreach ($all_levels as $i){
-                array_push($levels, $i);
-                if ($i->id == $answered_level[0]){
-                    break;
-                }
-            }
-            return view('study/study-lesson', [
-                'levels' => $levels
-            ]);
-        } else {
-            return redirect('/study')->with('alert', 'Zadaci će biti dostupni nakon što uspješno riješite pripadajući level u igrici!');
-        }
-        */
-
         if($last_level == Level::where('id_lesson', $id)->max('id')){
             return view('study/study-lesson', [
                 'levels' => $all_levels
@@ -90,11 +63,7 @@ class StudyController extends Controller
 
     }
 
-    /**
-     * Display all tasks in the level.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // kada student stisne na razinu izlistaju mu se svi zadaci
     public function getLevel($id)
     {
         session(['id' => $id]);
@@ -105,6 +74,7 @@ class StudyController extends Controller
         $answered = UserAnsweredTasks::where('id_user', $id_user)->pluck('id_answered_task')->toArray();
 
         if ($answered != null){
+            // zadaci koje je student već riješio
             $finished = Task::where('level', $id)->whereIn('id', $answered)->get();
             
             if ($finished != null){
@@ -121,12 +91,6 @@ class StudyController extends Controller
     
     }
 
-    /**
-     * Show the body of task.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function getTask($id)
     {
         $task = Task::find($id);
@@ -135,13 +99,6 @@ class StudyController extends Controller
             'task' => $task
         ]);
     }
-
-    /**
-     * Post from form arrives.
-     *
-     * @param  int  $id
-     * @param  \Illuminate\Http\Request  $request
-     */
 
     public function getSolution(Request $request, $id)
     {
@@ -175,6 +132,5 @@ class StudyController extends Controller
             ]);
         }
     }
-
-
+    
 }

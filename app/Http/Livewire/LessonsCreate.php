@@ -10,6 +10,7 @@ class LessonsCreate extends Component
 
     public $titleLesson;
 
+    // isto kao validated u controllerima
     protected $rules = [
         'titleLesson' => 'required|min:3',
     ];
@@ -19,12 +20,14 @@ class LessonsCreate extends Component
         'titleLesson.min' => 'Naziv cjeline mora imati minimalno 3 znaka!',
     ];
 
+    // funkcija za dinamičnu validaciju
     public function updated($titleLesson)
     {
 
         $this->validateOnly($titleLesson);
     }
 
+    // funkcija za spremanje cjeline
     public function save() {
 
         $validatedData = $this->validate();

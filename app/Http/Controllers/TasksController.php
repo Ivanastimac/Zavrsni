@@ -9,49 +9,23 @@ use Illuminate\Support\MessageBag;
 
 class TasksController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index($id, $complexity)
+    
+    public function index($id)
     {
         session(['id_level' => $id]);
 
         $all = Task::where('level', $id)->get();
 
-        if ($complexity == 0) {
-            return view('tasks/tasks-index', [
-                'tasks' => $all,
-                'complexity' => 0
-            ]);   
-        } else {
-            $levels = LevelLevel::where('level_1', $id)->pluck('level_0');
-            return view('tasks/tasks-index', [
-                'tasks' => $all,
-                'complexity' => 1,
-                'array' => $levels
-            ]);  
-        }
-
+        return view('tasks/tasks-index', [
+            'tasks' => $all
+        ]);   
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('tasks/tasks-create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -79,6 +53,7 @@ class TasksController extends Controller
         $task->level = session('id_level');
         $task->save();
 
+        // ako je dodana slika zadatka sprema se putanja u bazu
         if ($request->file('taskImage')) {
             // dobivanje slike: <img src = "{{ asset('images-tasks/task2') }}">
             $path = $request->file('taskImage')->storeAs('images/tasks', 'task' . $task->id);
@@ -94,16 +69,9 @@ class TasksController extends Controller
             $task->save();    
         } 
 
-        // promjena iz /tasks/index . seasson(id_level)
-        return redirect('/levels/index/'. '1');
+        return redirect('/tasks/index/' . session('id_level'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $task = Task::find($id);
@@ -113,12 +81,6 @@ class TasksController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $task = Task::find($id);
@@ -128,13 +90,6 @@ class TasksController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
 
@@ -178,16 +133,9 @@ class TasksController extends Controller
             $task->save();    
         }    
     
-        // promjena iz /tasks/index . seasson(id_level)
-        return redirect('/levels/index/'. '1');
+        return redirect('/tasks/index/' . session('id_level'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $task = Task::find($id);

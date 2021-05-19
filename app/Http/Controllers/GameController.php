@@ -15,11 +15,8 @@ use App\Models\UserAnsweredTasks;
 
 class GameController extends Controller
 {   
-    /**
-     * Display all lessons.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    // Prikazuje sve cjeline.
     public function index()
     {
         $allLessons = Lesson::all();
@@ -29,11 +26,7 @@ class GameController extends Controller
         ]);
     }
 
-    /**
-     * Display all levels in the lesson.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // Dobivanje zadataka ovisno o izabranoj lekciji
     public function getLesson($id)
     {
         // polje broja točno riješenih zadataka iz određenog levela, index polja predstavlja level,
@@ -96,60 +89,7 @@ class GameController extends Controller
         ]);
     }
 
-    /**
-     * Display all tasks in the level.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getLevel($id)
-    {
-        session(['id' => $id]);
-        $id_user = Auth::id();
-        
-        $all = Task::where('level', $id)->get();
-        
-        $answered = UserTasks::where([
-            ['id_user', $id_user]
-        ])->pluck('id_task')->toArray();
-        
-        if ($answered != null){
-            $available = Task::where('level', $id)->whereNotIn('id', $answered)->get();
-            
-            if ($available != null){
-                return view('game/game-level', [
-                    'tasks' => $available
-                ]);
-            }
-        }
-
-        return view('game/game-level', [
-            'tasks' => $all
-        ]);
-    
-    }
-
-    /**
-     * Show the body of task.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function getTask($id)
-    {
-        $task = Task::find($id);
-
-        return view('game/game-task', [
-            'task' => $task
-        ]);
-    }
-
-    /**
-     * Post from form arrives.
-     *
-     * @param  int  $id
-     * @param  \Illuminate\Http\Request  $request
-     */
-
+    // sprema točno riješen zadatak u bazu ili vraća objašnjenje za krivo riješen zadatak
     public function getSolution(Request $request, $id)
     {
         $id_user = Auth::id();
@@ -185,10 +125,10 @@ class GameController extends Controller
             }
 
             $lesson = Level::where('id', $id_level)->pluck('id_lesson')->toArray();
-            /*RETURN SLJEDEĆI ZADATAK*/
+            // vraća sljedeći zadatak
             return redirect('/game/lesson/' . $lesson[0]);
 
-        //ako zadatak nije tocno rijesen obrisati ostale zadatke iz baze
+        //ako zadatak nije tocno rijesen obrisati ostale zadatke iz baze, tj. iz istog levela
         } else {
             $level = Level::where('id', $id_level)->get();
             //svi zadaci u istom levelu u kojem se trenutno nalazimo
@@ -218,8 +158,8 @@ class GameController extends Controller
                     $user_tasks = UserTasks::all();
                     
                     foreach($user_tasks as $j){
-                        foreach($all_tasks as $z){
-                            if ($j->id_task == $z){
+                        foreach($all_tasks as $k){
+                            if ($j->id_task == $k){
                                 $delete = UserTasks::where('id_task', $j->id_task)->delete();
                             }
                         }
