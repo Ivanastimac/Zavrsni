@@ -27,11 +27,11 @@
         <label for="taskBody" class="form-label">Tekst zadatka</label></br>
         <textarea id="taskBody" name = "body" rows="3"> {{ $task->bodyText }} </textarea>
     </div>
-    <div>
+    <div class="col-md-3 px-0">
     <!-- prikaz slike -->
         Slika zadatka </br>
         @if($task->bodyImage != NULL)
-                <img src = "{{ asset('images-tasks/task' . $task->id) }}" alt="{{ asset('images-tasks/task' . $task->id) }}">
+                <img src = "{{ asset('images-tasks/task' . $task->id) }}" class="img-fluid" alt="{{ asset('images-tasks/task' . $task->id) }}">
         @endif
         <input type="file" name="taskImage" class="custom-file-input" id="chooseFile">
     </div>
@@ -80,10 +80,10 @@
         <label for="taskInstructions" class="form-label" >Objašnjenje zadatka</label></br>
         <textarea id="taskInstructions" name = "instructions" rows="3"> {{ $task->instructions }} </textarea>
     </div>
-    <div>
+    <div class="col-md-3 px-0">
         Slika objašnjenja </br>
         @if($task->bodyImageInstructions != NULL)
-            <img src = "{{ asset('images-instructions/instructions' . $task->id) }}" alt="{{ asset('images-instructions/instructions' . $task->id) }}">
+            <img src = "{{ asset('images-instructions/instructions' . $task->id) }}" class="img-fluid" alt="{{ asset('images-instructions/instructions' . $task->id) }}">
         @endif
         <input type="file" name="taskImageInstructions" class="custom-file-input" id="chooseFileInstructions">
     </div>

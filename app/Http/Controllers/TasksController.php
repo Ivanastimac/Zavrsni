@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\Level;
 use App\Models\LevelLevel;
 use Illuminate\Support\MessageBag;
 
@@ -75,9 +76,11 @@ class TasksController extends Controller
     public function show($id)
     {
         $task = Task::find($id);
+        $level = Level::find(session('id_level'));
         
         return view('tasks/tasks-show', [
-            'task' => $task
+            'task' => $task,
+            'level' => $level->title
         ]);
     }
 
