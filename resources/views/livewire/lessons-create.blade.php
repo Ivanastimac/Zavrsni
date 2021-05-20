@@ -7,7 +7,7 @@
                 @error('titleLesson') <span ...>{{ $message }}</span> @enderror
             </div>
             <div>
-                <button  type="submit" class="btn btn-primary btn-sm">Spremi cjelinu</button>
+                <button  type="submit" class="btn btn-primary btn-sm" onclick = "return confirm('Jeste li sigurni da želite spremiti ovu cjelinu? Naknadne izmjene nisu moguće!')">Spremi cjelinu</button>
             </div>
         </form>
     </div>
