@@ -145,8 +145,21 @@ class TasksController extends Controller
     public function destroy($id)
     {
         $task = Task::find($id);
-        $task->delete();
+        $user_task = UserTasks::where('id_task', $id);
+        $user_answered_task = UserAnsweredTasks::where('id_answered_task', $id);
 
+        if($user_answered_task != null){
+            $user_answered_task->delete();
+        }
+
+        if($user_task != null){
+            $user_task->delete();
+        }
+
+        if($task != null){
+            $task->delete();
+        }
+        
         return redirect('/tasks/index/' . session('id_level'));
     }
 }
