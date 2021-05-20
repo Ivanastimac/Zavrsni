@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\UserTasks;
+use App\Models\UserAnsweredTasks;
 use App\Models\Level;
 use App\Models\LevelLevel;
 use Illuminate\Support\MessageBag;
+use Auth;
 
 class TasksController extends Controller
 {
