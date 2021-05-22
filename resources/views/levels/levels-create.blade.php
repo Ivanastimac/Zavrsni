@@ -1,20 +1,10 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Razine') }}
-        </h2>
-    </x-slot>
+@extends('layouts.admin-errors')
 
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
-    
+@section('header')
+    {{ __('Razine') }}
+@endsection
+
+@section('content')
     <form method = "POST" action="/levels/store">
     @csrf
     <div class="row g-3 align-items-center mx-3">
@@ -52,7 +42,7 @@
     </div>
     </div>
     </form>
-</x-app-layout>
+@endsection
 
 <script>
     function divShow() {

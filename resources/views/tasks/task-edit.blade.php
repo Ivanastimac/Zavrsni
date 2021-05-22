@@ -1,20 +1,10 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Zadaci') }}
-        </h2>
-    </x-slot>
+@extends('layouts.admin-errors')
 
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
+@section('header')
+    {{ __('Zadaci') }}
+@endsection
 
+@section('content')
     <form method = "POST" action="/tasks/update/{{ $task->id }}">
     @csrf
     @method('PUT')
@@ -27,14 +17,11 @@
         <label for="taskBody" class="form-label">Tekst zadatka</label></br>
         <textarea id="taskBody" name = "body" rows="3"> {{ $task->bodyText }} </textarea>
     </div>
-    <div class="col-md-3 px-0">
-    <!-- prikaz slike -->
-        Slika zadatka </br>
-        @if($task->bodyImage != NULL)
-                <img src = "{{ asset('images-tasks/task' . $task->id) }}" class="img-fluid" alt="{{ asset('images-tasks/task' . $task->id) }}">
-        @endif
-        <input type="file" name="taskImage" class="custom-file-input" id="chooseFile">
+    <div class="col-xs-2">
+    Slika zadatka </br>
+    @include('image-body-display')
     </div>
+    <input type="file" name="taskImage" class="custom-file-input" id="chooseFile">
     <div class="col-xs-2">
         <label for="taskAnswer1" class="form-label">Prvi odgovor</label></br>
         <input type="text" id="taskAnswer1" name = "taskAnswer1" value = "{{ $task->firstAnswer }}">
@@ -80,11 +67,9 @@
         <label for="taskInstructions" class="form-label" >Objašnjenje zadatka</label></br>
         <textarea id="taskInstructions" name = "instructions" rows="3"> {{ $task->instructions }} </textarea>
     </div>
-    <div class="col-md-3 px-0">
+    <div class="col-xs-2">
         Slika objašnjenja </br>
-        @if($task->bodyImageInstructions != NULL)
-            <img src = "{{ asset('images-instructions/instructions' . $task->id) }}" class="img-fluid" alt="{{ asset('images-instructions/instructions' . $task->id) }}">
-        @endif
+        @include('image-instructions-display')
         <input type="file" name="taskImageInstructions" class="custom-file-input" id="chooseFileInstructions">
     </div>
     <div>
@@ -92,5 +77,4 @@
     </div>
     </div>
     </form>
-</x-app-layout>
-
+@endsection

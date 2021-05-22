@@ -1,20 +1,10 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Zadaci') }}
-        </h2>
-    </x-slot>
- 
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
+@extends('layouts.admin-errors')
 
+@section('header')
+    {{ __('Zadaci') }}
+@endsection
+
+@section('content')
     <form method = "POST" action="/tasks/store" enctype="multipart/form-data">
     @csrf
     <div class="row g-3 align-items-center">
@@ -84,5 +74,4 @@
     </div>
     </div>
     </form>
-</x-app-layout>
-
+@endsection
