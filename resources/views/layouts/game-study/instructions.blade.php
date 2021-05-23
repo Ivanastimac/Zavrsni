@@ -4,15 +4,16 @@
             {{ __('Zadatak') }}
         </h2>
     </x-slot>
-    <table class="table">
-        <tbody>
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="py-3">
             @if($task->instructions != NULL)
                 {{ $task->instructions }}
             @endif
             @include('image-instructions-display')
-            <br />
             @yield('link')
-            <button class="btn btn-success"> Povratak na zadatke </button></a>
-        </tbody>
-    </table>
+            <div class="pt-2">
+                <button class="btn btn-primary btn-sm"> Povratak na zadatke </button></a>
+            </div>
+        </div>
+    </div>
 </x-app-layout>

@@ -5,9 +5,15 @@
         </h2>
     </x-slot>
 
-    <span class = "border-bottom border-primary">
-        Upute za dodavanje cjelina, razina i lekcija: </br>
-    </span>
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="py-3">
+            <div class="shadow overflow-hidden sm:rounded-md">
+                <div class="px-4 py-5 bg-white sm:p-6">
+            <div class="pb-3">
+            <span class = "border-bottom border-primary fs-5 fw-bold">
+                Upute za dodavanje cjelina, razina i lekcija: </br>
+            </span>
+            </div>
         •	Prve se dodaju cjeline, potrebno je upisati samo naslov cjeline i ona označava jedno gradivo</br>
         •	Unutar cjeline dodaju se razine te je preporuka da se one nazivaju – Razina 1, Razina 2… unutar svake cjeline</br>
         &emsp;  o	Jednostavna razina znači da sadrži jednu vrstu zadatka, odnosno da nije složena od više vrsta zadataka</br>
@@ -16,6 +22,8 @@
         •	Za svaku razinu dodaju se zadatci iste vrste te je potrebno upisati naslov zadatka, tekst zadatka i/ili dodati sliku zadatka,  upisati ponuđene odgovore, odabrati točan odgovor od ponuđenih te upisati kratko objašnjenje rješenja zadatka ukoliko student odabere krivi odgovor</br>
         &emsp; o	Svaki zadatak mora imati 4 ponuđena odgovora</br>
         •	Informacije vezane uz zadatke se mogu mijenjati te se oni mogu brisati, dok to za cjeline i razine nije moguće </br>
-
-
+            </div>
+        </div>
+    </div>
+</div>
 </x-app-layout>
