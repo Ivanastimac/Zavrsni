@@ -22,9 +22,9 @@
         </tbody>
     </table>
     
-    <span>
+    <div class="col-md-4 px-0">
         @include('image-body-display') 
-    </span>
+    </div>
            
     <table class="table">
         <tbody>

@@ -9,7 +9,7 @@
             @foreach ($lessons as $lesson)
                 <tr>
                 <th class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <a href = "/study/lesson/{{ $lesson->id }}"><button class="btn btn-success"> {{ $lesson->title }} </button></a>
+                    <a href = "/study/lesson/{{ $lesson->id }}"><button class="btn btn-primary btn-sm"> {{ $lesson->title }} </button></a>
                 </th>
                 </tr>
             @endforeach

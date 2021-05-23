@@ -30,7 +30,9 @@
                                 <textarea id="taskBody" name = "body" rows="3" class="shadow p-1 mb-2 rounded border-secondary">{{ $task->bodyText }}</textarea>
                             </div>
                             <div class="col-span-4">
-                                @include('image-body-display')
+                                <div class="col-md-4 px-0">
+                                    @include('image-body-display')
+                                </div>
                                 <br/>
                                 <input type="file" name="taskImage" class="form-control-file" id="chooseFile">
                             </div>
