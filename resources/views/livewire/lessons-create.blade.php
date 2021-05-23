@@ -5,8 +5,8 @@
                 <div class="shadow overflow-hidden sm:rounded-md">
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div>
-                            <label for="name" class = "fs-6 text-secondary p-1">Naziv cjeline</label>
-                            <input type="text" wire:model="titleLesson" id="name" class = "shadow p-1 mb-2 rounded border-secondary"> <br/>
+                            <label for="name" class="fs-6 p-1">Naziv cjeline</label>
+                            <input type="text" wire:model="titleLesson" id="name" class="shadow p-1 mb-2 rounded border-secondary"> <br/>
                             @error('titleLesson') <span class="errorMessage">{{ $message }}</span> @enderror
                         </div>
                         <div class="d-flex align-items-center pt-4">
