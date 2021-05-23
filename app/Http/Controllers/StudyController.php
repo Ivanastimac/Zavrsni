@@ -130,10 +130,10 @@ class StudyController extends Controller
 
         //ako zadatak nije tocno rijesen prikazujemo objasnjenje
         } else {
-            $lesson = Level::where('id', $id_level)->pluck('id_lesson')->toArray();
+
             return view('study/study-instructions', [
                 'task' => $task,
-                'lesson' => $lesson[0]
+                'level' => $id_level
             ]);
         }
     }

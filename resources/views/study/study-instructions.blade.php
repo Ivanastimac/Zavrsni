@@ -1,5 +1,5 @@
 @extends('layouts.game-study.instructions')
 
 @section('link')
-    <a href = "/study/lesson/{{ $lesson }}">
+    <a href = "/study/level/{{ $level }}">
 @endsection
