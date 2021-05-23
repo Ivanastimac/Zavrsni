@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="{{ asset('css/tasks-index.css') }}">
-</head>
-<body>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -45,5 +39,3 @@
         </x-jet-nav-link>
     </div>
 </x-app-layout>
-</body>
-</html>
