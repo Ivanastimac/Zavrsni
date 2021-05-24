@@ -20,8 +20,9 @@
         &emsp; o	Složena razina znači da se sastoji od više vrsta zadataka, odnosno od 2 ili više jednostavnih razina</br>
         &emsp; o	Ako odaberete da je razina složena potrebno je označiti sve jednostavne razine, unutar trenutne cjeline, koje sadrže zadatke od kojih je složena trenutna razina</br>
         •	Za svaku razinu dodaju se zadatci iste vrste te je potrebno upisati naslov zadatka, tekst zadatka i/ili dodati sliku zadatka,  upisati ponuđene odgovore, odabrati točan odgovor od ponuđenih te upisati kratko objašnjenje rješenja zadatka ukoliko student odabere krivi odgovor</br>
+        &emsp; o	Svaka razina unutar cjeline mora sadržavati makar 2 zadatka kako bi cjelina bila dostupna u igrici</br>
         &emsp; o	Svaki zadatak mora imati 4 ponuđena odgovora</br>
-        •	Informacije vezane uz zadatke se mogu mijenjati te se oni mogu brisati, dok to za cjeline i razine nije moguće </br>
+        •	Informacije vezane uz zadatke se mogu mijenjati te se zadatci mogu brisati, dok to za cjeline i razine nije moguće </br>
             </div>
         </div>
     </div>
