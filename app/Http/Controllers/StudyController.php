@@ -31,7 +31,7 @@ class StudyController extends Controller
     {
         session(['id' => $id]);
         $id_user = Auth::id();
-        $count_answers = array_fill(0, 50, 0);
+        $count_answers = array_fill(0, 1000, 0);
 
         //svi leveli unutar lekcije
         $all_levels = Level::where('id_lesson', $id)->get();
@@ -41,7 +41,10 @@ class StudyController extends Controller
 
         foreach($answered_tasks as $i){
             $task = Task::where('id', $i)->pluck('level')->toArray();
-            $count_answers[$task[0]]++;
+            //sprema samo levele unutar trenutne lekcije
+            if (Level::where('id_lesson', $id)->where('id', $task)->exists()){
+                $count_answers[$task[0]]++;
+            }
         }
 
         $index = 0;
@@ -127,8 +130,10 @@ class StudyController extends Controller
 
         //ako zadatak nije tocno rijesen prikazujemo objasnjenje
         } else {
+
             return view('study/study-instructions', [
-                'task' => $task
+                'task' => $task,
+                'level' => $id_level
             ]);
         }
     }

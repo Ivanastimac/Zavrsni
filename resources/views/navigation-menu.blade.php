@@ -5,22 +5,28 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('instructions') }}">
                         <x-jet-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
+                <!-- Navigation Links 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('lessons') }}" :active="request()->routeIs('lessons')">
-                        {{ __('Zadaci') }}
-                    </x-jet-nav-link>
-                </div>
+                </div> -->
+                
+                <!-- Only admin sees this part of the app -->
+                @if (Auth::user()->permission == 'admin')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('lessons') }}" :active="request()->routeIs('lessons')">
+                            {{ __('Zadaci') }}
+                        </x-jet-nav-link>
+                    </div>
+                @endif
+
+                <!-- All users see this part of the app -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('game') }}" :active="request()->routeIs('game')">
                         {{ __('Igrica') }}
@@ -158,8 +164,8 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-jet-responsive-nav-link href="{{ route('instructions') }}" :active="request()->routeIs('instructions')">
+                {{ __('') }}
             </x-jet-responsive-nav-link>
         </div>
 

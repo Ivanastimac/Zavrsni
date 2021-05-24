@@ -31,14 +31,22 @@ class GameController extends Controller
     {
         // polje broja točno riješenih zadataka iz određenog levela, index polja predstavlja level,
         // a vrijednost na indexu broj točno riješenih zadataka
-        // ograniceno na 50 levela
-        $count_answers = array_fill(0, 50, 0);
-       
+        // ograniceno na 1000 levela
+        $count_answers = array_fill(0, 1000, 0);
+        
         session(['id' => $id]);
         $id_user = Auth::id();
 
+        //ime cjeline na koju je korisnik kliknuno
+        $lesson = Lesson::where('id', $id)->value('title');
+
         //svi leveli unutar lekcije
         $all_levels = Level::where('id_lesson', $id)->get();
+
+        //ako cjelina nema levela pošalji poruku korisniku
+        if (!Level::where('id_lesson', $id)->exists()){
+            return redirect('game')->with('alert', 'Cjelina "' . $lesson . '" još nije dostupna!');
+        }
 
         //polje svih riješenih zadataka
         $finished_tasks = UserTasks::where('id_user', $id_user)->pluck('id_task')->toArray();
@@ -55,6 +63,11 @@ class GameController extends Controller
         //petlja prolazi po svakom levelu, ako je jednostavan i nema 2 zadatka tocno rijesena vraca taj level,
         //ako je slozen provjerava jesu li rijeseni preduvijeti
         foreach($all_levels as $level){
+            //ako admin nije unesao zadatke u određen level pošalji poruku korisniku da level nije dostupan
+            if (!Task::where('level', $level->id)->exists()){
+                return redirect('game')->with('alert', 'Level "' . $level->title .'" unutar cjeline ' . '"'  .$lesson . '" još nije dostupan!');
+            }
+
             if ($level->complexity == 0){
                 if ($count_answers[$level->id] < 2){
                     $next_level = $level->id;
@@ -70,6 +83,7 @@ class GameController extends Controller
                 }
                 if ($count_answers[$level->id] < 2){
                     $next_level = $level->id;
+                    $next_level_name = $level->title;
                     break;
                 } else if ($count_answers[$level->id] >= 2 && $level->id == Level::where('id_lesson', $id)->max('id')){
                     $lesson = Lesson::where('id', $id)->value('title');
@@ -80,6 +94,11 @@ class GameController extends Controller
 
         //vraća sve zadatke iz sljedećeg levela koji nisu već riješeni
         $return_tasks = Task::where('level', $next_level)->whereNotIN('id', $finished_tasks)->get();
+
+        //ako je unesen samo jedan zadatak u levelu
+        if (count($return_tasks) < 1){
+            return redirect('game')->with('alert', 'Nema dovoljno dostupnih zadataka u ovoj cjelini unutar "' . $next_level_name . '" levela.');
+        }
 
         //vraća random zadatak od mogućih
         $rand_task = $return_tasks[rand(0, count($return_tasks) - 1)];
@@ -131,6 +150,8 @@ class GameController extends Controller
         //ako zadatak nije tocno rijesen obrisati ostale zadatke iz baze, tj. iz istog levela
         } else {
             $level = Level::where('id', $id_level)->get();
+            $lesson = Level::where('id', $id_level)->pluck('id_lesson')->toArray();
+            
             //svi zadaci u istom levelu u kojem se trenutno nalazimo
             $all_tasks = Task::where('level', $id_level)->pluck('id')->toArray();
 
@@ -168,7 +189,8 @@ class GameController extends Controller
             }
             //prikazi objasnjenje zadatka
             return view('game/game-instructions', [
-                'task' => $task
+                'task' => $task,
+                'lesson' => $lesson[0]
             ]);
         }
     }

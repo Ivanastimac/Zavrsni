@@ -20,7 +20,7 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    return redirect('/instructions');
 })->name('dashboard');
 
 Route::get('/email/verify', function () {
