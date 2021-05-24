@@ -14,10 +14,10 @@
                 Upute za igranje igrice: </br>
             </span>
             </div>
-    •	Otvaranjem cjeline pokreće se igrica za taj dio gradiva</br>
+            •	Otvaranjem cjeline pokreće se igrica za taj dio gradiva</br>
     •	Redom se prikazuju zadatci iz pojedinih razina, a potrebno je zaredom riješiti po dva zadatka iz određene razine kako bi se ta razina uspješno prošla</br>
-    &emsp; o	Ako unutar jednostavne razine krivo riješite zadatak dobivate zadatak iz iste razine sve dok ne riješite dva zadatka iz te razine točno i to zaredom</br>
-    &emsp; o	Ako unutar složene razine krivo riješite zadatak vraća vas na jednostavne razine koje sadrže zadatke od kojih se sastoji složena razina unutar koje ste krivo riješili zadatak</br>
+    &emsp; o	Ako se unutar jednostavne razine krivo riješi zadatak, ponovo se nudi zadatak iz iste razine sve dok ne riješite dva zadatka iz te razine točno i to zaredom</br>
+    &emsp; o	Ako se unutar složene razine krivo riješi zadatak, ponuditi će se ponovo zadatci iz jednostavnih razina (onih koje su preduvijet za trenutnu složenu razinu)</br>
     &emsp; o	Potrebno je ponovno riješiti po dva zadatka unutar svake jednostavne razine točno zaredom kako bi se vratili na složenu razinu</br>
     &emsp; o	U složenoj razini se ponovo očekuje da točno riješite dva zadatka točno zaredom da bi prošli na sljedeću razinu</br>
                 </div>
