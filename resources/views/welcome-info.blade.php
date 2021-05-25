@@ -4,10 +4,13 @@
             <div class="px-4 py-5 bg-white sm:p-6">
                 <div class="pb-3">
                     <span class = "border-bottom border-primary fs-5 fw-bold">
-                        Dobrodošli u web aplikaciju za e-učenje! </br>
+                        Dobrodošli u web aplikaciju za e-učenje! </br></br>
                     </span>
-                    Ako ste profesor, imate mogućnost stvaranja cjelina, razina i upisivanja zadataka koji bi se prikazivali studentima u igrici! </br>
-                    Ako ste student, imate pristup igrici preko koje, svojim napretkom, možete usvajati znanja vezana iz kolegija koji pohađate!
+                    Aplikacija je osmišljena kao pomoć pri kreiranju interaktivnih zbirki zadataka za kolegije iz STEM područja. 
+                    Izrađena je kako bi se preko intuitivnog korisničkog sučelja pružilo profesorima mogućnost unošenja zadataka 
+                    različitih težina, rangiranje zadataka prema željenim razinama i grupiranje istih u cjeline. <br />
+                    Aplikacija zatim pomoću unesenih zadataka kreira igricu koja postaje dostupna i studentima. <br />
+                    Studentima se na ovaj način daje pristup igrici preko koje, svojim napretkom, usvajaju gradivo na kreativan i zabavan način!
                 </div>
             </div> 
         </div> 
