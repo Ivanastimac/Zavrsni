@@ -9,7 +9,7 @@
             @if (Route::has('login'))
                     @auth
                         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                            <a href="{{ url('/instructions') }}" class="">Povratak na stranicu...</a>
+                            <a href="{{ url('/instructions') }}" class="link-secondary">Povratak na stranicu...</a>
                         </div>
                     @else
                         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
