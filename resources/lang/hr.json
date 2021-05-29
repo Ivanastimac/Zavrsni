@@ -173,5 +173,8 @@
     "Your email address is not verified.": "Vaša email adresa nije potrđena.",
     "We have emailed your password reset link!": "Na Vaš email poslali smo poveznicu za ponovno postavljanje lozinke",
     "These credentials do not match our records." : "Korisničko ime i lozinka se ne poklapaju sa zapisom u bazi.",
-    "Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another." : "Zahvaljujemo na registraciji! Prije nego krenete, molimo Vas da potvrdite Vaš email tako da kliknete na poveznicu koju smo Vam poslali. Ako niste dobili mail potvrde, poslat ćemo Vam opet."
+    "Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another." : "Zahvaljujemo na registraciji! Prije nego krenete, molimo Vas da potvrdite Vaš email tako da kliknete na poveznicu koju smo Vam poslali. Ako niste dobili mail potvrde, poslat ćemo Vam opet.",
+    "If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password." : "Ako je potrebno, možete se odjaviti iz svih ostalih uređaja. Neke od vaših nedavnih sesija navedene su u nastavku; međutim, ovaj popis možda nije potpun. Ako smatrate da je vaš račun ugrožen, trebali biste i ažurirati lozinku.",
+    "Manage and log out your active sessions on other browsers and devices.": " ",
+    "Log Out Other Browser Sessions": "ODJAVA IZ SVIH SESIJA"
 }
