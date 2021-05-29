@@ -87,7 +87,7 @@ return [
     'min' => [
         'numeric' => ':attribute se mora sastojati od najmanje :min.',
         'file' => ':attribute se mora sastojati od najmanje :min KB.',
-        'string' => ':attribute se mora sastojati od najmanje :min znakova.',
+        //'string' => ':attribute se mora sastojati od najmanje :min znaka.',
         'array' => ':attribute se mora sastojati od najmanje :min elemenata.',
     ],
     // 'multiple_of' => 'The :attribute must be a multiple of :value',
@@ -147,6 +147,23 @@ return [
     |
     */
 
-    // 'attributes' => [],
+    'attributes' => array(
+        'titleTask' => 'Naslov zadatka',
+        'taskAnswer1' => 'Prvi odgovor',
+        'taskAnswer2' => 'Drugi odgovor',
+        'taskAnswer3' => 'Treći odgovor',
+        'taskAnswer4' => 'Četvrti odgovor',
+        'solution' => 'Točan odgovor',
+        'instructions' => 'objašnjenje zadatka',
+        'body' => 'tekst zadatka',
+        'taskImage' => 'slika zadatka',
+        'taskImageInstructions' => 'slika objašnjenja',
+
+        'titleLesson' => 'Naslov cjeline',
+
+        'titleLevel' => 'Naslov razine',
+        'complexity' => 'Složenost razine',
+        'flexBox' => 'o kojim razinama ovisi ova razina'
+    ),
 
 ];

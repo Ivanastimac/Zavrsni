@@ -149,23 +149,6 @@ return [
     |
     */
 
-    'attributes' => array(
-        'titleTask' => 'naslov zadatka',
-        'taskAnswer1' => 'prvi odgovor',
-        'taskAnswer2' => 'drugi odgovor',
-        'taskAnswer3' => 'treći odgovor',
-        'taskAnswer4' => 'četvrti odgovor',
-        'solution' => 'točan odgovor',
-        'instructions' => 'objašnjenje zadatka',
-        'body' => 'tekst zadatka',
-        'taskImage' => 'slika zadatka',
-        'taskImageInstructions' => 'slika objašnjenja',
 
-        'titleLesson' => 'naslov cjeline',
-
-        'titleLevel' => 'naslov razine',
-        'complexity' => 'je li razina složena ili ne',
-        'flexBox' => 'o kojim razinama ovisi ova razina'
-    ),
 
 ];

@@ -1,10 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ asset('css/background.css') }}">
+</head>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Zadatak') }}
         </h2>
     </x-slot>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 p-5">
         <div class="grid grid-cols-3">
             <div class="col-start-2 py-3">
                 <div class="shadow overflow-hidden sm:rounded-md">
