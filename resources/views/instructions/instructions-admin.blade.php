@@ -15,7 +15,7 @@
             </span>
             </div>
         •	Prve se dodaju cjeline, potrebno je upisati samo naslov cjeline i ona označava jedno gradivo</br>
-        •	Unutar cjeline dodaju se razine te je preporuka da se one nazivaju – Razina 1, Razina 2… unutar svake cjeline</br>
+        •	Unutar cjeline dodaju se razine:</br>
         &emsp;  o	Jednostavna razina znači da sadrži jednu vrstu zadatka, odnosno da nije složena od više vrsta zadataka</br>
         &emsp; o	Složena razina znači da se sastoji od više vrsta zadataka, odnosno od 2 ili više jednostavnih razina</br>
         &emsp; o	Ako se odabere da je razina složena potrebno je označiti sve jednostavne razine, unutar trenutne cjeline, koje sadrže zadatke od kojih je složena trenutna razina</br>

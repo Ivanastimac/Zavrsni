@@ -13,10 +13,10 @@
                         </div>
                     @else
                         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                            <a href="{{ route('login') }}" class="link-secondary pe-3">Log in</a>
+                            <a href="{{ route('login') }}" class="link-secondary pe-3">Prijava</a>
 
                             @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="link-secondary">Register</a>
+                                <a href="{{ route('register') }}" class="link-secondary">Registracija</a>
                             @endif
                         </div>
                     @endauth
